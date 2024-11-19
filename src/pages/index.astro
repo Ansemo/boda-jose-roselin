@@ -3,7 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invitación de Boda</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Invitación de Boda</title>
+	
+	<!-- Meta datos Open Graph -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="¡Estás invitado a nuestra boda!" />
+	<meta property="og:description" content="Con la bendición de Dios y de nuestros padres, te invitamos a celebrar nuestra boda. ¡Nos encantaría contar contigo en este día especial!" />
+	<meta property="og:image" content="/portada-redes.png" />
+	<meta property="og:url" content="https://boda-jose-and-roselin.netlify.app/" />
+	<meta property="og:site_name" content="Invitación de Boda de José & Roselin" />
+  
+	<!-- Compatibilidad con Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="¡Estás invitado a nuestra boda!" />
+	<meta name="twitter:description" content="Con la bendición de Dios y de nuestros padres, te invitamos a celebrar nuestra boda. ¡Nos encantaría contar contigo en este día especial!" />
+	<meta name="twitter:image" content="/portada-redes.png" />
+  
+	<!-- Fuente adicional -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+	  href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap"
+	  rel="stylesheet"
+	/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -253,6 +277,15 @@
           video.play(); // Reproducir el video inicial
           hideElement(playButton); // Ocultar el botón de reproducción
           hideElement(countdown); // Ocultar el contador
+
+          // Manejar qué pasa cuando termina el video inicial nuevamente
+          video.addEventListener("ended", () => {
+            video.style.display = "none"; // Ocultar el video inicial
+            backgroundVideo.style.display = "block"; // Mostrar el segundo video
+            backgroundVideo.play(); // Reproducir el segundo video
+            showElement(playButton); // Mostrar el botón de reproducción
+            showElement(countdown); // Mostrar el contador
+          });
         }
       });
 

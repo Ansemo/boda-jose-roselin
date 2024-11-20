@@ -187,46 +187,6 @@
 
     <script is:inline>
 
-let scrollTimeout; // Variable para almacenar el timeout
-
-function alignNearestVideoToTop() {
-  // Obtener todas las secciones
-  const sections = document.querySelectorAll(".section, .countdown-section");
-
-  // Obtener la posición actual del scroll
-  const scrollPosition = window.scrollY + window.innerHeight / 2; // Centro del viewport
-
-  // Encontrar la sección más cercana al centro del viewport
-  let nearestSection = null;
-  let minDistance = Infinity;
-
-  sections.forEach((section) => {
-    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    const distance = Math.abs(sectionTop - scrollPosition);
-
-    if (distance < minDistance) {
-      minDistance = distance;
-      nearestSection = section;
-    }
-  });
-
-  // Si se encuentra una sección, alinear al tope
-  if (nearestSection) {
-    nearestSection.scrollIntoView({ behavior: "smooth" });
-  }
-}
-
-// Escuchar el evento de scroll
-window.addEventListener("scroll", () => {
-  // Limpiar cualquier timeout existente
-  clearTimeout(scrollTimeout);
-
-  // Configurar un nuevo timeout de 200ms
-  scrollTimeout = setTimeout(() => {
-    alignNearestVideoToTop();
-  }, 200);
-});
-
       // Función para actualizar el contador regresivo
       function updateCountdown() {
         const weddingDate = new Date("2024-12-14T00:00:00-05:00");

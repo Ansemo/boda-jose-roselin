@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galería de Videos - Invitación</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #000;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      .video-section {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .video-section video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+      }
+
+      .countdown-section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .countdown-section > :not(video) {
+        mask-image: url("/rough-texture-contador.png");
+        color: #114221;
+      }
+
+      .countdown-section video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .countdown-title {
+        font-size: 49px;
+        font-family: "Great Vibes", serif;
+        z-index: 1;
+      }
+
+      .countdown-timer {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        font-size: 1.5rem;
+        font-family: "Alegreya", serif;
+        z-index: 1;
+      }
+
+      .time-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+      }
+
+      .time-value {
+        font-size: 3rem;
+        font-weight: bold;
+      }
+
+      .time-label {
+        font-size: 1.1rem;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Video 1 -->
+    <div class="video-section">
+      <video src="/videos/Escena-01.mp4" autoplay muted playsinline loop
+      ></video>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-section">
+      <video src="/videos/Escena-02.mp4" autoplay muted playsinline loop
+      ></video>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-section">
+      <video src="/videos/Escena-03.mp4" autoplay muted playsinline loop
+      ></video>
+    </div>
+
+    <!-- Contador con video de fondo -->
+    <div class="countdown-section">
+      <video src="/videos/invitacionFondo.mp4" autoplay muted playsinline loop
+      ></video>
+      <div class="countdown-title">¡Nuestra boda será en:</div>
+      <div class="countdown-timer">
+        <div class="time-box">
+          <div id="days" class="time-value">0</div>
+          <div class="time-label">Días</div>
+        </div>
+        <div class="time-box">
+          <div id="hours" class="time-value">0</div>
+          <div class="time-label">Horas</div>
+        </div>
+        <div class="time-box">
+          <div id="minutes" class="time-value">0</div>
+          <div class="time-label">Minutos</div>
+        </div>
+        <div class="time-box">
+          <div id="seconds" class="time-value">0</div>
+          <div class="time-label">Segundos</div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script is:inline>
+    // Función para actualizar el contador regresivo
+    function updateCountdown() {
+      const weddingDate = new Date("2024-12-14T00:00:00-05:00");
+      const now = new Date();
+      const timeDifference = weddingDate - now;
+
+      if (timeDifference <= 0) {
+        document.querySelector(".countdown-title").innerText =
+          "¡Hoy es el gran día!";
+        document.querySelector(".countdown-timer").style.display = "none";
+        return;
+      }
+
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeDifference / 1000) % 60);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</html>

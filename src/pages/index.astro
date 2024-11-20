@@ -3,7 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galería de Videos - Invitación</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación de Boda</title>
+
+    <!-- Meta datos Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="¡Estás invitado a nuestra boda!" />
+    <meta
+      property="og:description"
+      content="Con la bendición de Dios y de nuestros padres, te invitamos a celebrar nuestra boda. ¡Nos encantaría contar contigo en este día especial!"
+    />
+    <meta
+      property="og:image"
+      content="https://boda-jose-and-roselin.netlify.app/portada-redes.png"
+    />
+    <meta property="og:url" content="" />
+    <meta
+      property="og:site_name"
+      content="Invitación de Boda de José & Roselin"
+    />
+    <link
+      rel="image_src"
+      href="https://boda-jose-and-roselin.netlify.app/portada-redes.png"
+    />
+    <meta property="og:image:alt" content="Estás invitado a nuestra boda" />
+    <!-- Compatibilidad con Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="¡Estás invitado a nuestra boda!" />
+    <meta
+      name="twitter:description"
+      content="Con la bendición de Dios y de nuestros padres, te invitamos a celebrar nuestra boda. ¡Nos encantaría contar contigo en este día especial!"
+    />
+    <meta
+      name="twitter:image"
+      content="https://boda-jose-and-roselin.netlify.app/portada-redes.png"
+    />
+
+    <!-- Fuente adicional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap"
       rel="stylesheet"
@@ -141,56 +186,6 @@
     </div>
 
     <script is:inline>
-      // Variables para manejar los gestos táctiles
-      let touchStartY = 0;
-      let touchEndY = 0;
-      const sections = document.querySelectorAll(
-        ".section, .countdown-section"
-      );
-      let isScrolling = false;
-
-      // Función para manejar el inicio del toque
-      function handleTouchStart(event) {
-        touchStartY = event.touches[0].clientY;
-      }
-
-      // Función para manejar el fin del toque
-      function handleTouchEnd(event) {
-        touchEndY = event.changedTouches[0].clientY;
-        handleGesture();
-      }
-
-      // Función para determinar la dirección del gesto y realizar el desplazamiento
-      function handleGesture() {
-        if (isScrolling) return;
-
-        const currentSection = Array.from(sections).findIndex(
-          (section) => section.getBoundingClientRect().top >= 0
-        );
-
-        if (touchStartY - touchEndY > 50) {
-          // Desplazar hacia abajo
-          if (currentSection < sections.length - 1) {
-            isScrolling = true;
-            sections[currentSection + 1].scrollIntoView({ behavior: "smooth" });
-            setTimeout(() => (isScrolling = false), 1000);
-          }
-        } else if (touchEndY - touchStartY > 50) {
-          // Desplazar hacia arriba
-          if (currentSection > 0) {
-            isScrolling = true;
-            sections[currentSection - 1].scrollIntoView({ behavior: "smooth" });
-            setTimeout(() => (isScrolling = false), 1000);
-          }
-        }
-      }
-
-      // Escuchar eventos táctiles en el documento
-      document.addEventListener("touchstart", handleTouchStart, {
-        passive: true,
-      });
-      document.addEventListener("touchend", handleTouchEnd, { passive: true });
-
       // Función para actualizar el contador regresivo
       function updateCountdown() {
         const weddingDate = new Date("2024-12-14T00:00:00-05:00");

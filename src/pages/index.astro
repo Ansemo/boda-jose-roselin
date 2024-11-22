@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Invitación de Boda</title>
 
     <!-- Meta datos Open Graph -->
@@ -18,17 +16,11 @@
       property="og:image"
       content="https://boda-jose-and-roselin.netlify.app/portada-redes.png"
     />
-    <meta property="og:url" content="" />
     <meta
       property="og:site_name"
       content="Invitación de Boda de José & Roselin"
     />
-    <link
-      rel="image_src"
-      href="https://boda-jose-and-roselin.netlify.app/portada-redes.png"
-    />
     <meta property="og:image:alt" content="Estás invitado a nuestra boda" />
-    <!-- Compatibilidad con Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="¡Estás invitado a nuestra boda!" />
     <meta
@@ -41,12 +33,6 @@
     />
 
     <!-- Fuente adicional -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap"
-      rel="stylesheet"
-    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -144,25 +130,57 @@
   <body>
     <!-- Video 1 -->
     <div class="section">
-      <video src="/videos/Escena-01.mp4" autoplay muted playsinline loop
+      <video
+        data-src="/videos/Escena-01.mp4"
+        autoplay
+        muted
+        playsinline
+        loop
+        class="lazy-video"
+        preload="metadata"
+        poster="/Fondo.png"
       ></video>
     </div>
 
     <!-- Video 2 -->
     <div class="section">
-      <video src="/videos/Escena-02.mp4" autoplay muted playsinline loop
+      <video
+        data-src="/videos/Escena-02.mp4"
+        autoplay
+        muted
+        playsinline
+        loop
+        class="lazy-video"
+        preload="metadata"
+        poster="/Fondo.png"
       ></video>
     </div>
 
     <!-- Video 3 -->
     <div class="section">
-      <video src="/videos/Escena-03.mp4" autoplay muted playsinline loop
+      <video
+        data-src="/videos/Escena-03.mp4"
+        autoplay
+        muted
+        playsinline
+        loop
+        class="lazy-video"
+        preload="metadata"
+        poster="/Fondo.png"
       ></video>
     </div>
 
     <!-- Contador con video de fondo -->
     <div class="countdown-section">
-      <video src="/videos/invitacionFondo.mp4" autoplay muted playsinline loop
+      <video
+        data-src="/videos/invitacionFondo.mp4"
+        autoplay
+        muted
+        playsinline
+        loop
+        class="lazy-video"
+        preload="metadata"
+        poster="/images/poster-invitacion.jpg"
       ></video>
       <div class="countdown-title">¡Nuestra boda será en:</div>
       <div class="countdown-timer">
@@ -186,6 +204,22 @@
     </div>
 
     <script is:inline>
+      // Lazy load para videos
+      document.addEventListener("DOMContentLoaded", () => {
+        const lazyVideos = document.querySelectorAll(".lazy-video");
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const video = entry.target;
+              video.src = video.dataset.src;
+              video.load();
+              observer.unobserve(video);
+            }
+          });
+        });
+
+        lazyVideos.forEach((video) => observer.observe(video));
+      });
 
       // Función para actualizar el contador regresivo
       function updateCountdown() {
